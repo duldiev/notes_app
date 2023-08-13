@@ -35,6 +35,7 @@ abstract class $AppRouter extends _i4.RootStackRouter {
         child: _i2.NoteEditorScreen(
           key: args.key,
           note: args.note,
+          callback: args.callback,
         ),
       );
     },
@@ -67,12 +68,14 @@ class NoteEditorRoute extends _i4.PageRouteInfo<NoteEditorRouteArgs> {
   NoteEditorRoute({
     _i5.Key? key,
     required _i6.Note note,
+    required dynamic Function(int) callback,
     List<_i4.PageRouteInfo>? children,
   }) : super(
           NoteEditorRoute.name,
           args: NoteEditorRouteArgs(
             key: key,
             note: note,
+            callback: callback,
           ),
           initialChildren: children,
         );
@@ -87,15 +90,18 @@ class NoteEditorRouteArgs {
   const NoteEditorRouteArgs({
     this.key,
     required this.note,
+    required this.callback,
   });
 
   final _i5.Key? key;
 
   final _i6.Note note;
 
+  final dynamic Function(int) callback;
+
   @override
   String toString() {
-    return 'NoteEditorRouteArgs{key: $key, note: $note}';
+    return 'NoteEditorRouteArgs{key: $key, note: $note, callback: $callback}';
   }
 }
 

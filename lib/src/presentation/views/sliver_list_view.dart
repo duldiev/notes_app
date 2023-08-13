@@ -86,8 +86,9 @@ class SliverListView extends StatelessWidget {
                               scale: 0.8,
                               origin: Offset(8.w, 0),
                               child: Container(
-                                decoration: const BoxDecoration(
+                                decoration: BoxDecoration(
                                   shape: BoxShape.circle,
+                                  color: AppColors.background.withOpacity(0.8),
                                 ),
                                 child: Icon(
                                   FontAwesomeIcons.arrowLeft,

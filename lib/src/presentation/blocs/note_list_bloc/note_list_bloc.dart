@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -34,6 +36,7 @@ class NoteListBloc extends Bloc<NoteListEvent, NoteListState> {
   }
 
   List<NotesByDate> _orderNotesByDate(List<Note> notes) {
+    log(notes.toString());
     List<NotesByDate> orderedNotes = [];
     notes
         .map((note) => DateFormat('d MMM').format(note.createdAt))

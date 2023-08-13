@@ -7,7 +7,7 @@ class AppColors {
   static Color get secondary => const Color(0xFF686777);
   static Color get success => const Color(0xFF63B966);
   static Color get primary => const Color.fromARGB(255, 32, 56, 162);
-  static Color get danger => const Color(0xFFFF3D00);
+  static Color get danger => Color.fromARGB(255, 204, 0, 0);
   static Color get black => const Color.fromARGB(255, 0, 0, 0);
   static Color get transparent => Colors.transparent;
 }

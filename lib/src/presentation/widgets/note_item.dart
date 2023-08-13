@@ -22,7 +22,10 @@ class NoteItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return OutlinedButton(
       onPressed: () => context.router.push(
-        NoteEditorRoute(note: note),
+        NoteEditorRoute(
+          note: note,
+          callback: (id) => context.read<NoteBloc>().add(Delete(id)),
+        ),
       ),
       style: ButtonStyle(
         overlayColor: MaterialStatePropertyAll(

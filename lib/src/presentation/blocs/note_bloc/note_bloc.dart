@@ -30,6 +30,9 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
     Emitter<NoteState> emit,
   ) =>
       emit(state.copyWith(
+        success: false,
+        failed: false,
+        loading: false,
         note: event.note ?? Note.empty(),
       ));
 
@@ -107,5 +110,7 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
     emit(isDeleted
         ? state.copyWith(success: true)
         : state.copyWith(failed: true));
+
+    add(const Create());
   }
 }

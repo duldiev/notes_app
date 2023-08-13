@@ -6,7 +6,10 @@ import 'package:notes_app/src/shared/app_colors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class NotesCard extends StatelessWidget {
-  const NotesCard({super.key, required this.notesByDate});
+  const NotesCard({
+    super.key,
+    required this.notesByDate,
+  });
 
   final NotesByDate notesByDate;
 
