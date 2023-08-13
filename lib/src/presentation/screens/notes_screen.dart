@@ -68,51 +68,44 @@ class _NoteListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
-      onRefresh: () async => context.read<NoteListBloc>().add(
-            const GetList(),
+    return SingleChildScrollView(
+      clipBehavior: Clip.none,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          BlocBuilder<NoteBloc, NoteState>(
+            builder: (context, state) =>
+                state.loading ? const LinearLoader() : const SizedBox(),
           ),
-      color: AppColors.primary,
-      child: SingleChildScrollView(
-        clipBehavior: Clip.none,
-        physics: const AlwaysScrollableScrollPhysics(),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            BlocBuilder<NoteBloc, NoteState>(
-              builder: (context, state) =>
-                  state.loading ? const LinearLoader() : const SizedBox(),
+          Padding(
+            padding: EdgeInsets.only(
+              bottom: context.bottomViewInset + 2.h,
+              left: 4.w,
+              right: 4.w,
             ),
-            Padding(
-              padding: EdgeInsets.only(
-                bottom: context.bottomViewInset + 2.h,
-                left: 4.w,
-                right: 4.w,
-              ),
-              child: BlocConsumer<NoteListBloc, NoteListState>(
-                listener: (context, state) {},
-                builder: (context, state) {
-                  return state.when(
-                    initial: () => const SizedBox(),
-                    loading: () => const Loader(),
-                    loaded: (notes) => notes.isNotEmpty
-                        ? Column(
-                            children: List.generate(
-                              notes.length,
-                              (index) => NotesCard(
-                                key: Key(index.toString()),
-                                notesByDate: notes[index],
-                              ),
+            child: BlocConsumer<NoteListBloc, NoteListState>(
+              listener: (context, state) {},
+              builder: (context, state) {
+                return state.when(
+                  initial: () => const SizedBox(),
+                  loading: () => const Loader(),
+                  loaded: (notes) => notes.isNotEmpty
+                      ? Column(
+                          children: List.generate(
+                            notes.length,
+                            (index) => NotesCard(
+                              key: Key(index.toString()),
+                              notesByDate: notes[index],
                             ),
-                          )
-                        : const EmptyNotesPlaceholder(),
-                    failed: (message) => Text(message),
-                  );
-                },
-              ),
+                          ),
+                        )
+                      : const EmptyNotesPlaceholder(),
+                  failed: (message) => Text(message),
+                );
+              },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

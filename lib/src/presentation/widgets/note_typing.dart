@@ -91,7 +91,7 @@ class _NoteTypingState extends State<NoteTyping> {
                       )
                     : null,
                 border: InputBorder.none,
-                hintText: "Start typing...",
+                hintText: "Начните печатать...",
                 focusedBorder: _border(),
                 enabledBorder: _border(),
                 disabledBorder: _border(),

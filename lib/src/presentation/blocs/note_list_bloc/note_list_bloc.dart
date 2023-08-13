@@ -39,7 +39,7 @@ class NoteListBloc extends Bloc<NoteListEvent, NoteListState> {
     log(notes.toString());
     List<NotesByDate> orderedNotes = [];
     notes
-        .map((note) => DateFormat('d MMM').format(note.createdAt))
+        .map((note) => DateFormat('d MMMM').format(note.createdAt))
         .toSet()
         .forEach(
           (day) => orderedNotes.add(
@@ -51,7 +51,7 @@ class NoteListBloc extends Bloc<NoteListEvent, NoteListState> {
         );
     for (var i = 0; i < orderedNotes.length; i++) {
       for (var j = 0; j < notes.length; j++) {
-        final day = DateFormat('d MMM').format(notes[j].createdAt);
+        final day = DateFormat('d MMMM').format(notes[j].createdAt);
         if (orderedNotes[i].dateTitle == day) {
           orderedNotes[i].notes.add(notes[j]);
         }
