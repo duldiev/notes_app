@@ -1,18 +1,16 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:gap/gap.dart';
 import 'package:notes_app/core/extensions/ext_media_query.dart';
 import 'package:notes_app/src/dependencies/injection.dart';
 import 'package:notes_app/src/presentation/blocs/note_bloc/note_bloc.dart';
 import 'package:notes_app/src/presentation/blocs/note_list_bloc/note_list_bloc.dart';
 import 'package:notes_app/src/presentation/widgets/app_bar_widget.dart';
+import 'package:notes_app/src/presentation/widgets/empty_notes_placeholder.dart';
 import 'package:notes_app/src/presentation/widgets/loader.dart';
-import 'package:notes_app/src/presentation/widgets/note_item.dart';
 import 'package:notes_app/src/presentation/widgets/note_typing.dart';
+import 'package:notes_app/src/presentation/widgets/notes_card.dart';
 import 'package:notes_app/src/shared/app_colors.dart';
-import 'package:notes_app/src/shared/text_style_helper.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 @RoutePage()
@@ -71,7 +69,11 @@ class _NoteListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(bottom: context.bottomViewInset + 2.h),
+      padding: EdgeInsets.only(
+        bottom: context.bottomViewInset + 2.h,
+        left: 4.w,
+        right: 4.w,
+      ),
       child: BlocConsumer<NoteListBloc, NoteListState>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -82,36 +84,13 @@ class _NoteListView extends StatelessWidget {
                 ? Column(
                     children: List.generate(
                       notes.length,
-                      (index) => NoteItem(
+                      (index) => NotesCard(
                         key: Key(index.toString()),
-                        note: notes[index],
+                        notesByDate: notes[index],
                       ),
                     ),
                   )
-                : Container(
-                    height: 70.h,
-                    alignment: Alignment.center,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          FontAwesomeIcons.noteSticky,
-                          color: AppColors.secondary,
-                          size: 14.w,
-                        ),
-                        Gap(2.h),
-                        Text(
-                          'Нет заметок',
-                          style: TextStyleHelper.h4.copyWith(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.secondary,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    ),
-                  ),
+                : const EmptyNotesPlaceholder(),
             failed: (message) => Text(message),
           );
         },

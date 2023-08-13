@@ -9,6 +9,8 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i4;
+import 'package:flutter/material.dart' as _i5;
+import 'package:notes_app/src/domain/models/note.dart' as _i6;
 import 'package:notes_app/src/presentation/screens/note_details_screen.dart'
     as _i1;
 import 'package:notes_app/src/presentation/screens/note_editor_screen.dart'
@@ -27,9 +29,13 @@ abstract class $AppRouter extends _i4.RootStackRouter {
       );
     },
     NoteEditorRoute.name: (routeData) {
+      final args = routeData.argsAs<NoteEditorRouteArgs>();
       return _i4.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i2.NoteEditorScreen(),
+        child: _i2.NoteEditorScreen(
+          key: args.key,
+          note: args.note,
+        ),
       );
     },
     NotesRoute.name: (routeData) {
@@ -57,16 +63,40 @@ class NoteDetailsRoute extends _i4.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.NoteEditorScreen]
-class NoteEditorRoute extends _i4.PageRouteInfo<void> {
-  const NoteEditorRoute({List<_i4.PageRouteInfo>? children})
-      : super(
+class NoteEditorRoute extends _i4.PageRouteInfo<NoteEditorRouteArgs> {
+  NoteEditorRoute({
+    _i5.Key? key,
+    required _i6.Note note,
+    List<_i4.PageRouteInfo>? children,
+  }) : super(
           NoteEditorRoute.name,
+          args: NoteEditorRouteArgs(
+            key: key,
+            note: note,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'NoteEditorRoute';
 
-  static const _i4.PageInfo<void> page = _i4.PageInfo<void>(name);
+  static const _i4.PageInfo<NoteEditorRouteArgs> page =
+      _i4.PageInfo<NoteEditorRouteArgs>(name);
+}
+
+class NoteEditorRouteArgs {
+  const NoteEditorRouteArgs({
+    this.key,
+    required this.note,
+  });
+
+  final _i5.Key? key;
+
+  final _i6.Note note;
+
+  @override
+  String toString() {
+    return 'NoteEditorRouteArgs{key: $key, note: $note}';
+  }
 }
 
 /// generated route for

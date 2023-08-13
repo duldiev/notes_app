@@ -168,7 +168,7 @@ mixin _$NoteListState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Note> notes) loaded,
+    required TResult Function(List<NotesByDate> notes) loaded,
     required TResult Function(String message) failed,
   }) =>
       throw _privateConstructorUsedError;
@@ -176,7 +176,7 @@ mixin _$NoteListState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Note> notes)? loaded,
+    TResult? Function(List<NotesByDate> notes)? loaded,
     TResult? Function(String message)? failed,
   }) =>
       throw _privateConstructorUsedError;
@@ -184,7 +184,7 @@ mixin _$NoteListState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Note> notes)? loaded,
+    TResult Function(List<NotesByDate> notes)? loaded,
     TResult Function(String message)? failed,
     required TResult orElse(),
   }) =>
@@ -272,7 +272,7 @@ class _$Initial implements Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Note> notes) loaded,
+    required TResult Function(List<NotesByDate> notes) loaded,
     required TResult Function(String message) failed,
   }) {
     return initial();
@@ -283,7 +283,7 @@ class _$Initial implements Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Note> notes)? loaded,
+    TResult? Function(List<NotesByDate> notes)? loaded,
     TResult? Function(String message)? failed,
   }) {
     return initial?.call();
@@ -294,7 +294,7 @@ class _$Initial implements Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Note> notes)? loaded,
+    TResult Function(List<NotesByDate> notes)? loaded,
     TResult Function(String message)? failed,
     required TResult orElse(),
   }) {
@@ -384,7 +384,7 @@ class _$Loading implements Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Note> notes) loaded,
+    required TResult Function(List<NotesByDate> notes) loaded,
     required TResult Function(String message) failed,
   }) {
     return loading();
@@ -395,7 +395,7 @@ class _$Loading implements Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Note> notes)? loaded,
+    TResult? Function(List<NotesByDate> notes)? loaded,
     TResult? Function(String message)? failed,
   }) {
     return loading?.call();
@@ -406,7 +406,7 @@ class _$Loading implements Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Note> notes)? loaded,
+    TResult Function(List<NotesByDate> notes)? loaded,
     TResult Function(String message)? failed,
     required TResult orElse(),
   }) {
@@ -463,7 +463,7 @@ abstract class _$$LoadedCopyWith<$Res> {
   factory _$$LoadedCopyWith(_$Loaded value, $Res Function(_$Loaded) then) =
       __$$LoadedCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Note> notes});
+  $Res call({List<NotesByDate> notes});
 }
 
 /// @nodoc
@@ -482,7 +482,7 @@ class __$$LoadedCopyWithImpl<$Res>
       null == notes
           ? _value._notes
           : notes // ignore: cast_nullable_to_non_nullable
-              as List<Note>,
+              as List<NotesByDate>,
     ));
   }
 }
@@ -490,11 +490,11 @@ class __$$LoadedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$Loaded implements Loaded {
-  const _$Loaded(final List<Note> notes) : _notes = notes;
+  const _$Loaded(final List<NotesByDate> notes) : _notes = notes;
 
-  final List<Note> _notes;
+  final List<NotesByDate> _notes;
   @override
-  List<Note> get notes {
+  List<NotesByDate> get notes {
     if (_notes is EqualUnmodifiableListView) return _notes;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_notes);
@@ -528,7 +528,7 @@ class _$Loaded implements Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Note> notes) loaded,
+    required TResult Function(List<NotesByDate> notes) loaded,
     required TResult Function(String message) failed,
   }) {
     return loaded(notes);
@@ -539,7 +539,7 @@ class _$Loaded implements Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Note> notes)? loaded,
+    TResult? Function(List<NotesByDate> notes)? loaded,
     TResult? Function(String message)? failed,
   }) {
     return loaded?.call(notes);
@@ -550,7 +550,7 @@ class _$Loaded implements Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Note> notes)? loaded,
+    TResult Function(List<NotesByDate> notes)? loaded,
     TResult Function(String message)? failed,
     required TResult orElse(),
   }) {
@@ -599,9 +599,9 @@ class _$Loaded implements Loaded {
 }
 
 abstract class Loaded implements NoteListState {
-  const factory Loaded(final List<Note> notes) = _$Loaded;
+  const factory Loaded(final List<NotesByDate> notes) = _$Loaded;
 
-  List<Note> get notes;
+  List<NotesByDate> get notes;
   @JsonKey(ignore: true)
   _$$LoadedCopyWith<_$Loaded> get copyWith =>
       throw _privateConstructorUsedError;
@@ -671,7 +671,7 @@ class _$Failed implements Failed {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Note> notes) loaded,
+    required TResult Function(List<NotesByDate> notes) loaded,
     required TResult Function(String message) failed,
   }) {
     return failed(message);
@@ -682,7 +682,7 @@ class _$Failed implements Failed {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Note> notes)? loaded,
+    TResult? Function(List<NotesByDate> notes)? loaded,
     TResult? Function(String message)? failed,
   }) {
     return failed?.call(message);
@@ -693,7 +693,7 @@ class _$Failed implements Failed {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Note> notes)? loaded,
+    TResult Function(List<NotesByDate> notes)? loaded,
     TResult Function(String message)? failed,
     required TResult orElse(),
   }) {

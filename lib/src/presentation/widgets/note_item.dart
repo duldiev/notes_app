@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -7,6 +7,8 @@ import 'package:intl/intl.dart';
 import 'package:notes_app/src/domain/models/note.dart';
 import 'package:notes_app/src/presentation/blocs/note_bloc/note_bloc.dart';
 import 'package:notes_app/src/presentation/widgets/note_item_style.dart';
+import 'package:notes_app/src/services/app_router.gr.dart';
+import 'package:notes_app/src/shared/app_colors.dart';
 
 class NoteItem extends StatelessWidget {
   const NoteItem({
@@ -19,8 +21,13 @@ class NoteItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
-      onPressed: () {},
+      onPressed: () => context.router.push(
+        NoteEditorRoute(note: note),
+      ),
       style: ButtonStyle(
+        overlayColor: MaterialStatePropertyAll(
+          AppColors.primary.withOpacity(0.1),
+        ),
         shape: MaterialStateProperty.all(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(0.0),
@@ -34,13 +41,13 @@ class NoteItem extends StatelessWidget {
         key: UniqueKey(),
         endActionPane: ActionPane(
           motion: const ScrollMotion(),
+          extentRatio: 0.3,
+          dismissible: DismissiblePane(
+            onDismissed: () => context.read<NoteBloc>().add(
+                  Delete(note.id),
+                ),
+          ),
           children: [
-            SlidableAction(
-              icon: CupertinoIcons.lock,
-              foregroundColor: Colors.white,
-              backgroundColor: Colors.orange,
-              onPressed: (context) {},
-            ),
             SlidableAction(
               icon: FontAwesomeIcons.deleteLeft,
               foregroundColor: Colors.white,
