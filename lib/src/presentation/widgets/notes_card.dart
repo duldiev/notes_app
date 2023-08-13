@@ -12,34 +12,37 @@ class NotesCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        DateTitle(title: notesByDate.dateTitle),
-        Flexible(
-          flex: 1,
-          child: Container(
-            decoration: BoxDecoration(
-              color: AppColors.light.withOpacity(0.6),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            clipBehavior: Clip.hardEdge,
-            child: ListView.separated(
-              itemCount: notesByDate.notes.length,
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: (context, index) {
-                return NoteItem(
-                  note: notesByDate.notes[index],
-                );
-              },
-              separatorBuilder: (context, index) {
-                return Divider(height: 0, indent: 4.w);
-              },
+    return Padding(
+      padding: EdgeInsets.only(bottom: 1.h),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          DateTitle(title: notesByDate.dateTitle),
+          Flexible(
+            flex: 1,
+            child: Container(
+              decoration: BoxDecoration(
+                color: AppColors.light.withOpacity(0.6),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              clipBehavior: Clip.hardEdge,
+              child: ListView.separated(
+                itemCount: notesByDate.notes.length,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                  return NoteItem(
+                    note: notesByDate.notes[index],
+                  );
+                },
+                separatorBuilder: (context, index) {
+                  return Divider(height: 0, indent: 4.w);
+                },
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

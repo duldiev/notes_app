@@ -29,34 +29,31 @@ class NoteListBloc extends Bloc<NoteListEvent, NoteListState> {
 
     result.fold(
       (failureMessage) => emit(Failed(failureMessage)),
-      (list) {
-        List<NotesByDate> orderedNotes = _orderNotesByDate(list);
-        emit(Loaded(orderedNotes));
-      },
+      (list) => emit(Loaded(_orderNotesByDate(list))),
     );
   }
 
   List<NotesByDate> _orderNotesByDate(List<Note> notes) {
-    List<NotesByDate> notesPerDay = [];
+    List<NotesByDate> orderedNotes = [];
     notes
         .map((note) => DateFormat('d MMM').format(note.createdAt))
         .toSet()
         .forEach(
-          (day) => notesPerDay.add(
+          (day) => orderedNotes.add(
             NotesByDate(
               dateTitle: day,
               notes: [],
             ),
           ),
         );
-    for (var i = 0; i < notesPerDay.length; i++) {
+    for (var i = 0; i < orderedNotes.length; i++) {
       for (var j = 0; j < notes.length; j++) {
         final day = DateFormat('d MMM').format(notes[j].createdAt);
-        if (notesPerDay[i].dateTitle == day) {
-          notesPerDay[i].notes.add(notes[j]);
+        if (orderedNotes[i].dateTitle == day) {
+          orderedNotes[i].notes.add(notes[j]);
         }
       }
     }
-    return notesPerDay;
+    return orderedNotes;
   }
 }

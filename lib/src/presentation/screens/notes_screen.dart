@@ -54,7 +54,9 @@ class NotesScreen extends StatelessWidget {
               }
             },
             builder: (context, state) {
-              return const SafeArea(child: NoteTyping());
+              return SafeArea(
+                child: NoteTyping(note: state.note),
+              );
             },
           ),
         ),

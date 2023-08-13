@@ -89,7 +89,7 @@ class NoteItem extends StatelessWidget {
                   ),
                   style: const TextStyle(
                     color: Colors.grey,
-                    fontSize: 10,
+                    fontSize: 12,
                   ),
                   textAlign: TextAlign.end,
                 ),

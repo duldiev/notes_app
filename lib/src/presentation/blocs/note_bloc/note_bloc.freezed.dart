@@ -18,28 +18,28 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$NoteEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() create,
+    required TResult Function(Note? note) create,
     required TResult Function(String value) changeText,
     required TResult Function() attachImage,
-    required TResult Function() save,
+    required TResult Function(bool createNew) save,
     required TResult Function(int? id) delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? create,
+    TResult? Function(Note? note)? create,
     TResult? Function(String value)? changeText,
     TResult? Function()? attachImage,
-    TResult? Function()? save,
+    TResult? Function(bool createNew)? save,
     TResult? Function(int? id)? delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? create,
+    TResult Function(Note? note)? create,
     TResult Function(String value)? changeText,
     TResult Function()? attachImage,
-    TResult Function()? save,
+    TResult Function(bool createNew)? save,
     TResult Function(int? id)? delete,
     required TResult orElse(),
   }) =>
@@ -95,6 +95,8 @@ class _$NoteEventCopyWithImpl<$Res, $Val extends NoteEvent>
 abstract class _$$CreateCopyWith<$Res> {
   factory _$$CreateCopyWith(_$Create value, $Res Function(_$Create) then) =
       __$$CreateCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Note? note});
 }
 
 /// @nodoc
@@ -103,63 +105,87 @@ class __$$CreateCopyWithImpl<$Res>
     implements _$$CreateCopyWith<$Res> {
   __$$CreateCopyWithImpl(_$Create _value, $Res Function(_$Create) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? note = freezed,
+  }) {
+    return _then(_$Create(
+      freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as Note?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$Create implements Create {
-  const _$Create();
+  const _$Create([this.note]);
+
+  @override
+  final Note? note;
 
   @override
   String toString() {
-    return 'NoteEvent.create()';
+    return 'NoteEvent.create(note: $note)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$Create);
+        (other.runtimeType == runtimeType &&
+            other is _$Create &&
+            (identical(other.note, note) || other.note == note));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, note);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CreateCopyWith<_$Create> get copyWith =>
+      __$$CreateCopyWithImpl<_$Create>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() create,
+    required TResult Function(Note? note) create,
     required TResult Function(String value) changeText,
     required TResult Function() attachImage,
-    required TResult Function() save,
+    required TResult Function(bool createNew) save,
     required TResult Function(int? id) delete,
   }) {
-    return create();
+    return create(note);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? create,
+    TResult? Function(Note? note)? create,
     TResult? Function(String value)? changeText,
     TResult? Function()? attachImage,
-    TResult? Function()? save,
+    TResult? Function(bool createNew)? save,
     TResult? Function(int? id)? delete,
   }) {
-    return create?.call();
+    return create?.call(note);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? create,
+    TResult Function(Note? note)? create,
     TResult Function(String value)? changeText,
     TResult Function()? attachImage,
-    TResult Function()? save,
+    TResult Function(bool createNew)? save,
     TResult Function(int? id)? delete,
     required TResult orElse(),
   }) {
     if (create != null) {
-      return create();
+      return create(note);
     }
     return orElse();
   }
@@ -206,7 +232,12 @@ class _$Create implements Create {
 }
 
 abstract class Create implements NoteEvent {
-  const factory Create() = _$Create;
+  const factory Create([final Note? note]) = _$Create;
+
+  Note? get note;
+  @JsonKey(ignore: true)
+  _$$CreateCopyWith<_$Create> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -273,10 +304,10 @@ class _$ChangeText implements ChangeText {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() create,
+    required TResult Function(Note? note) create,
     required TResult Function(String value) changeText,
     required TResult Function() attachImage,
-    required TResult Function() save,
+    required TResult Function(bool createNew) save,
     required TResult Function(int? id) delete,
   }) {
     return changeText(value);
@@ -285,10 +316,10 @@ class _$ChangeText implements ChangeText {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? create,
+    TResult? Function(Note? note)? create,
     TResult? Function(String value)? changeText,
     TResult? Function()? attachImage,
-    TResult? Function()? save,
+    TResult? Function(bool createNew)? save,
     TResult? Function(int? id)? delete,
   }) {
     return changeText?.call(value);
@@ -297,10 +328,10 @@ class _$ChangeText implements ChangeText {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? create,
+    TResult Function(Note? note)? create,
     TResult Function(String value)? changeText,
     TResult Function()? attachImage,
-    TResult Function()? save,
+    TResult Function(bool createNew)? save,
     TResult Function(int? id)? delete,
     required TResult orElse(),
   }) {
@@ -398,10 +429,10 @@ class _$AttachImage implements AttachImage {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() create,
+    required TResult Function(Note? note) create,
     required TResult Function(String value) changeText,
     required TResult Function() attachImage,
-    required TResult Function() save,
+    required TResult Function(bool createNew) save,
     required TResult Function(int? id) delete,
   }) {
     return attachImage();
@@ -410,10 +441,10 @@ class _$AttachImage implements AttachImage {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? create,
+    TResult? Function(Note? note)? create,
     TResult? Function(String value)? changeText,
     TResult? Function()? attachImage,
-    TResult? Function()? save,
+    TResult? Function(bool createNew)? save,
     TResult? Function(int? id)? delete,
   }) {
     return attachImage?.call();
@@ -422,10 +453,10 @@ class _$AttachImage implements AttachImage {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? create,
+    TResult Function(Note? note)? create,
     TResult Function(String value)? changeText,
     TResult Function()? attachImage,
-    TResult Function()? save,
+    TResult Function(bool createNew)? save,
     TResult Function(int? id)? delete,
     required TResult orElse(),
   }) {
@@ -484,6 +515,8 @@ abstract class AttachImage implements NoteEvent {
 abstract class _$$SaveCopyWith<$Res> {
   factory _$$SaveCopyWith(_$Save value, $Res Function(_$Save) then) =
       __$$SaveCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool createNew});
 }
 
 /// @nodoc
@@ -491,63 +524,88 @@ class __$$SaveCopyWithImpl<$Res> extends _$NoteEventCopyWithImpl<$Res, _$Save>
     implements _$$SaveCopyWith<$Res> {
   __$$SaveCopyWithImpl(_$Save _value, $Res Function(_$Save) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? createNew = null,
+  }) {
+    return _then(_$Save(
+      null == createNew
+          ? _value.createNew
+          : createNew // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$Save implements Save {
-  const _$Save();
+  const _$Save(this.createNew);
+
+  @override
+  final bool createNew;
 
   @override
   String toString() {
-    return 'NoteEvent.save()';
+    return 'NoteEvent.save(createNew: $createNew)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$Save);
+        (other.runtimeType == runtimeType &&
+            other is _$Save &&
+            (identical(other.createNew, createNew) ||
+                other.createNew == createNew));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, createNew);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SaveCopyWith<_$Save> get copyWith =>
+      __$$SaveCopyWithImpl<_$Save>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() create,
+    required TResult Function(Note? note) create,
     required TResult Function(String value) changeText,
     required TResult Function() attachImage,
-    required TResult Function() save,
+    required TResult Function(bool createNew) save,
     required TResult Function(int? id) delete,
   }) {
-    return save();
+    return save(createNew);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? create,
+    TResult? Function(Note? note)? create,
     TResult? Function(String value)? changeText,
     TResult? Function()? attachImage,
-    TResult? Function()? save,
+    TResult? Function(bool createNew)? save,
     TResult? Function(int? id)? delete,
   }) {
-    return save?.call();
+    return save?.call(createNew);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? create,
+    TResult Function(Note? note)? create,
     TResult Function(String value)? changeText,
     TResult Function()? attachImage,
-    TResult Function()? save,
+    TResult Function(bool createNew)? save,
     TResult Function(int? id)? delete,
     required TResult orElse(),
   }) {
     if (save != null) {
-      return save();
+      return save(createNew);
     }
     return orElse();
   }
@@ -594,7 +652,11 @@ class _$Save implements Save {
 }
 
 abstract class Save implements NoteEvent {
-  const factory Save() = _$Save;
+  const factory Save(final bool createNew) = _$Save;
+
+  bool get createNew;
+  @JsonKey(ignore: true)
+  _$$SaveCopyWith<_$Save> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -659,10 +721,10 @@ class _$Delete implements Delete {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() create,
+    required TResult Function(Note? note) create,
     required TResult Function(String value) changeText,
     required TResult Function() attachImage,
-    required TResult Function() save,
+    required TResult Function(bool createNew) save,
     required TResult Function(int? id) delete,
   }) {
     return delete(id);
@@ -671,10 +733,10 @@ class _$Delete implements Delete {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? create,
+    TResult? Function(Note? note)? create,
     TResult? Function(String value)? changeText,
     TResult? Function()? attachImage,
-    TResult? Function()? save,
+    TResult? Function(bool createNew)? save,
     TResult? Function(int? id)? delete,
   }) {
     return delete?.call(id);
@@ -683,10 +745,10 @@ class _$Delete implements Delete {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? create,
+    TResult Function(Note? note)? create,
     TResult Function(String value)? changeText,
     TResult Function()? attachImage,
-    TResult Function()? save,
+    TResult Function(bool createNew)? save,
     TResult Function(int? id)? delete,
     required TResult orElse(),
   }) {
