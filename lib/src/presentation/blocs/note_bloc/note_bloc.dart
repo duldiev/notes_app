@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:image_picker/image_picker.dart';
@@ -28,13 +29,15 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
   void onCreate(
     Create event,
     Emitter<NoteState> emit,
-  ) =>
-      emit(state.copyWith(
-        success: false,
-        failed: false,
-        loading: false,
-        note: event.note ?? Note.empty(),
-      ));
+  ) {
+    log(event.note?.id.toString() ?? 'NULL');
+    emit(state.copyWith(
+      success: false,
+      failed: false,
+      loading: false,
+      note: event.note ?? Note.empty(),
+    ));
+  }
 
   void onChangeText(
     ChangeText event,
@@ -42,8 +45,8 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
   ) =>
       emit(state.copyWith(
         note: state.note == null
-            ? Note.empty(event.value)
-            : state.note?.copyWith(text: event.value),
+            ? Note.empty(event.value.trim())
+            : state.note?.copyWith(text: event.value.trim()),
       ));
 
   Future<void> onAttachImage(
@@ -83,7 +86,7 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
 
     result.fold(
       (l) => emit(state.copyWith(failed: true)),
-      (r) => emit(state.copyWith(success: true, note: null)),
+      (r) => emit(state.copyWith(success: true)),
     );
 
     if (event.createNew) add(const Create());

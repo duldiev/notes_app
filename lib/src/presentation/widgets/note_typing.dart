@@ -47,6 +47,7 @@ class _NoteTypingState extends State<NoteTyping> {
               onTapOutside: (event) {
                 FocusManager.instance.primaryFocus?.unfocus();
               },
+              cursorColor: AppColors.primary,
               textInputAction: TextInputAction.newline,
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.symmetric(

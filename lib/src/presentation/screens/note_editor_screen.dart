@@ -26,7 +26,7 @@ class NoteEditorScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<NoteBloc>(),
+      create: (context) => getIt<NoteBloc>()..add(Create(note)),
       child: Scaffold(
         body: SafeArea(
           top: false,
@@ -48,46 +48,60 @@ class _Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverListView(
-      title: const Text(''),
-      pinned: false,
-      stretch: true,
-      floating: true,
-      preferredSize: 0,
-      expandedHeight: note.image != null ? 20.h : 0.h,
-      actions: [
-        AppBarButton(
-          icon: FontAwesomeIcons.trash,
-          iconColor: AppColors.danger,
-          onPressed: () {
-            context.router.pop();
-            if (note.id != null) callback(note.id!);
-          },
-        ),
-      ],
-      flexibleSpace: note.image != null
-          ? Container(
-              decoration: BoxDecoration(
-                color: AppColors.background,
+    return BlocBuilder<NoteBloc, NoteState>(
+      builder: (context, state) {
+        return SliverListView(
+          title: const Text(''),
+          pinned: false,
+          stretch: true,
+          floating: true,
+          preferredSize: 0,
+          expandedHeight: note.image != null ? 20.h : 0.h,
+          actions: [
+            AppBarButton(
+              icon: FontAwesomeIcons.trash,
+              iconColor: AppColors.danger,
+              onPressed: () {
+                context.router.pop();
+                if (note.id != null) callback(note.id!);
+              },
+            ),
+          ],
+          flexibleSpace: note.image != null
+              ? Container(
+                  decoration: BoxDecoration(
+                    color: AppColors.background,
+                  ),
+                  child: Image.memory(
+                    base64Decode(note.image!),
+                    fit: BoxFit.cover,
+                  ),
+                )
+              : null,
+          body: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 4.w),
+            child: TextFormField(
+              initialValue: note.text,
+              cursorColor: AppColors.primary,
+              style: TextStyleHelper.h3.copyWith(),
+              onChanged: (value) {
+                context.read<NoteBloc>().add(
+                      ChangeText(value),
+                    );
+                context.read<NoteBloc>().add(
+                      const Save(false),
+                    );
+              },
+              textInputAction: TextInputAction.newline,
+              maxLines: null,
+              decoration: const InputDecoration(
+                hintText: '',
+                border: InputBorder.none,
               ),
-              child: Image.memory(
-                base64Decode(note.image!),
-                fit: BoxFit.cover,
-              ),
-            )
-          : null,
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 4.w),
-        child: TextFormField(
-          initialValue: note.text,
-          cursorColor: AppColors.primary,
-          style: TextStyleHelper.h3.copyWith(),
-          decoration: const InputDecoration(
-            hintText: '',
-            border: InputBorder.none,
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

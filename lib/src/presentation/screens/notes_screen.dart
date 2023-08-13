@@ -7,6 +7,7 @@ import 'package:notes_app/src/presentation/blocs/note_bloc/note_bloc.dart';
 import 'package:notes_app/src/presentation/blocs/note_list_bloc/note_list_bloc.dart';
 import 'package:notes_app/src/presentation/widgets/app_bar_widget.dart';
 import 'package:notes_app/src/presentation/widgets/empty_notes_placeholder.dart';
+import 'package:notes_app/src/presentation/widgets/linear_loader.dart';
 import 'package:notes_app/src/presentation/widgets/loader.dart';
 import 'package:notes_app/src/presentation/widgets/note_typing.dart';
 import 'package:notes_app/src/presentation/widgets/notes_card.dart';
@@ -33,10 +34,7 @@ class NotesScreen extends StatelessWidget {
           scrolledUnderElevation: 1,
         ),
         body: const SafeArea(
-          child: SingleChildScrollView(
-            clipBehavior: Clip.none,
-            child: _NoteListView(),
-          ),
+          child: _NoteListView(),
         ),
         bottomNavigationBar: Container(
           padding: EdgeInsets.only(
@@ -70,32 +68,51 @@ class _NoteListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(
-        bottom: context.bottomViewInset + 2.h,
-        left: 4.w,
-        right: 4.w,
-      ),
-      child: BlocConsumer<NoteListBloc, NoteListState>(
-        listener: (context, state) {},
-        builder: (context, state) {
-          return state.when(
-            initial: () => const SizedBox(),
-            loading: () => const Loader(),
-            loaded: (notes) => notes.isNotEmpty
-                ? Column(
-                    children: List.generate(
-                      notes.length,
-                      (index) => NotesCard(
-                        key: Key(index.toString()),
-                        notesByDate: notes[index],
-                      ),
-                    ),
-                  )
-                : const EmptyNotesPlaceholder(),
-            failed: (message) => Text(message),
-          );
-        },
+    return RefreshIndicator(
+      onRefresh: () async => context.read<NoteListBloc>().add(
+            const GetList(),
+          ),
+      color: AppColors.primary,
+      child: SingleChildScrollView(
+        clipBehavior: Clip.none,
+        physics: const AlwaysScrollableScrollPhysics(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            BlocBuilder<NoteBloc, NoteState>(
+              builder: (context, state) =>
+                  state.loading ? const LinearLoader() : const SizedBox(),
+            ),
+            Padding(
+              padding: EdgeInsets.only(
+                bottom: context.bottomViewInset + 2.h,
+                left: 4.w,
+                right: 4.w,
+              ),
+              child: BlocConsumer<NoteListBloc, NoteListState>(
+                listener: (context, state) {},
+                builder: (context, state) {
+                  return state.when(
+                    initial: () => const SizedBox(),
+                    loading: () => const Loader(),
+                    loaded: (notes) => notes.isNotEmpty
+                        ? Column(
+                            children: List.generate(
+                              notes.length,
+                              (index) => NotesCard(
+                                key: Key(index.toString()),
+                                notesByDate: notes[index],
+                              ),
+                            ),
+                          )
+                        : const EmptyNotesPlaceholder(),
+                    failed: (message) => Text(message),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
