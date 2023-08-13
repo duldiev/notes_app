@@ -1,10 +1,12 @@
-class Note {
+import 'package:equatable/equatable.dart';
+
+class Note extends Equatable {
   final int? id;
   final String text;
   final String? image;
   final DateTime createdAt;
 
-  Note({
+  const Note({
     this.id,
     required this.text,
     this.image,
@@ -27,7 +29,7 @@ class Note {
     return Note(
       id: id ?? this.id,
       text: text ?? this.text,
-      image: image ?? this.image,
+      image: image,
       createdAt: createdAt ?? this.createdAt,
     );
   }
@@ -49,4 +51,7 @@ class Note {
       createdAt: DateTime.parse(map['createdAt'] as String),
     );
   }
+
+  @override
+  List<Object?> get props => [id, text, image, createdAt];
 }

@@ -21,6 +21,7 @@ mixin _$NoteEvent {
     required TResult Function(Note? note) create,
     required TResult Function(String value) changeText,
     required TResult Function() attachImage,
+    required TResult Function() removeImage,
     required TResult Function(bool createNew) save,
     required TResult Function(int? id) delete,
   }) =>
@@ -30,6 +31,7 @@ mixin _$NoteEvent {
     TResult? Function(Note? note)? create,
     TResult? Function(String value)? changeText,
     TResult? Function()? attachImage,
+    TResult? Function()? removeImage,
     TResult? Function(bool createNew)? save,
     TResult? Function(int? id)? delete,
   }) =>
@@ -39,6 +41,7 @@ mixin _$NoteEvent {
     TResult Function(Note? note)? create,
     TResult Function(String value)? changeText,
     TResult Function()? attachImage,
+    TResult Function()? removeImage,
     TResult Function(bool createNew)? save,
     TResult Function(int? id)? delete,
     required TResult orElse(),
@@ -49,6 +52,7 @@ mixin _$NoteEvent {
     required TResult Function(Create value) create,
     required TResult Function(ChangeText value) changeText,
     required TResult Function(AttachImage value) attachImage,
+    required TResult Function(RemoveImage value) removeImage,
     required TResult Function(Save value) save,
     required TResult Function(Delete value) delete,
   }) =>
@@ -58,6 +62,7 @@ mixin _$NoteEvent {
     TResult? Function(Create value)? create,
     TResult? Function(ChangeText value)? changeText,
     TResult? Function(AttachImage value)? attachImage,
+    TResult? Function(RemoveImage value)? removeImage,
     TResult? Function(Save value)? save,
     TResult? Function(Delete value)? delete,
   }) =>
@@ -67,6 +72,7 @@ mixin _$NoteEvent {
     TResult Function(Create value)? create,
     TResult Function(ChangeText value)? changeText,
     TResult Function(AttachImage value)? attachImage,
+    TResult Function(RemoveImage value)? removeImage,
     TResult Function(Save value)? save,
     TResult Function(Delete value)? delete,
     required TResult orElse(),
@@ -156,6 +162,7 @@ class _$Create implements Create {
     required TResult Function(Note? note) create,
     required TResult Function(String value) changeText,
     required TResult Function() attachImage,
+    required TResult Function() removeImage,
     required TResult Function(bool createNew) save,
     required TResult Function(int? id) delete,
   }) {
@@ -168,6 +175,7 @@ class _$Create implements Create {
     TResult? Function(Note? note)? create,
     TResult? Function(String value)? changeText,
     TResult? Function()? attachImage,
+    TResult? Function()? removeImage,
     TResult? Function(bool createNew)? save,
     TResult? Function(int? id)? delete,
   }) {
@@ -180,6 +188,7 @@ class _$Create implements Create {
     TResult Function(Note? note)? create,
     TResult Function(String value)? changeText,
     TResult Function()? attachImage,
+    TResult Function()? removeImage,
     TResult Function(bool createNew)? save,
     TResult Function(int? id)? delete,
     required TResult orElse(),
@@ -196,6 +205,7 @@ class _$Create implements Create {
     required TResult Function(Create value) create,
     required TResult Function(ChangeText value) changeText,
     required TResult Function(AttachImage value) attachImage,
+    required TResult Function(RemoveImage value) removeImage,
     required TResult Function(Save value) save,
     required TResult Function(Delete value) delete,
   }) {
@@ -208,6 +218,7 @@ class _$Create implements Create {
     TResult? Function(Create value)? create,
     TResult? Function(ChangeText value)? changeText,
     TResult? Function(AttachImage value)? attachImage,
+    TResult? Function(RemoveImage value)? removeImage,
     TResult? Function(Save value)? save,
     TResult? Function(Delete value)? delete,
   }) {
@@ -220,6 +231,7 @@ class _$Create implements Create {
     TResult Function(Create value)? create,
     TResult Function(ChangeText value)? changeText,
     TResult Function(AttachImage value)? attachImage,
+    TResult Function(RemoveImage value)? removeImage,
     TResult Function(Save value)? save,
     TResult Function(Delete value)? delete,
     required TResult orElse(),
@@ -307,6 +319,7 @@ class _$ChangeText implements ChangeText {
     required TResult Function(Note? note) create,
     required TResult Function(String value) changeText,
     required TResult Function() attachImage,
+    required TResult Function() removeImage,
     required TResult Function(bool createNew) save,
     required TResult Function(int? id) delete,
   }) {
@@ -319,6 +332,7 @@ class _$ChangeText implements ChangeText {
     TResult? Function(Note? note)? create,
     TResult? Function(String value)? changeText,
     TResult? Function()? attachImage,
+    TResult? Function()? removeImage,
     TResult? Function(bool createNew)? save,
     TResult? Function(int? id)? delete,
   }) {
@@ -331,6 +345,7 @@ class _$ChangeText implements ChangeText {
     TResult Function(Note? note)? create,
     TResult Function(String value)? changeText,
     TResult Function()? attachImage,
+    TResult Function()? removeImage,
     TResult Function(bool createNew)? save,
     TResult Function(int? id)? delete,
     required TResult orElse(),
@@ -347,6 +362,7 @@ class _$ChangeText implements ChangeText {
     required TResult Function(Create value) create,
     required TResult Function(ChangeText value) changeText,
     required TResult Function(AttachImage value) attachImage,
+    required TResult Function(RemoveImage value) removeImage,
     required TResult Function(Save value) save,
     required TResult Function(Delete value) delete,
   }) {
@@ -359,6 +375,7 @@ class _$ChangeText implements ChangeText {
     TResult? Function(Create value)? create,
     TResult? Function(ChangeText value)? changeText,
     TResult? Function(AttachImage value)? attachImage,
+    TResult? Function(RemoveImage value)? removeImage,
     TResult? Function(Save value)? save,
     TResult? Function(Delete value)? delete,
   }) {
@@ -371,6 +388,7 @@ class _$ChangeText implements ChangeText {
     TResult Function(Create value)? create,
     TResult Function(ChangeText value)? changeText,
     TResult Function(AttachImage value)? attachImage,
+    TResult Function(RemoveImage value)? removeImage,
     TResult Function(Save value)? save,
     TResult Function(Delete value)? delete,
     required TResult orElse(),
@@ -432,6 +450,7 @@ class _$AttachImage implements AttachImage {
     required TResult Function(Note? note) create,
     required TResult Function(String value) changeText,
     required TResult Function() attachImage,
+    required TResult Function() removeImage,
     required TResult Function(bool createNew) save,
     required TResult Function(int? id) delete,
   }) {
@@ -444,6 +463,7 @@ class _$AttachImage implements AttachImage {
     TResult? Function(Note? note)? create,
     TResult? Function(String value)? changeText,
     TResult? Function()? attachImage,
+    TResult? Function()? removeImage,
     TResult? Function(bool createNew)? save,
     TResult? Function(int? id)? delete,
   }) {
@@ -456,6 +476,7 @@ class _$AttachImage implements AttachImage {
     TResult Function(Note? note)? create,
     TResult Function(String value)? changeText,
     TResult Function()? attachImage,
+    TResult Function()? removeImage,
     TResult Function(bool createNew)? save,
     TResult Function(int? id)? delete,
     required TResult orElse(),
@@ -472,6 +493,7 @@ class _$AttachImage implements AttachImage {
     required TResult Function(Create value) create,
     required TResult Function(ChangeText value) changeText,
     required TResult Function(AttachImage value) attachImage,
+    required TResult Function(RemoveImage value) removeImage,
     required TResult Function(Save value) save,
     required TResult Function(Delete value) delete,
   }) {
@@ -484,6 +506,7 @@ class _$AttachImage implements AttachImage {
     TResult? Function(Create value)? create,
     TResult? Function(ChangeText value)? changeText,
     TResult? Function(AttachImage value)? attachImage,
+    TResult? Function(RemoveImage value)? removeImage,
     TResult? Function(Save value)? save,
     TResult? Function(Delete value)? delete,
   }) {
@@ -496,6 +519,7 @@ class _$AttachImage implements AttachImage {
     TResult Function(Create value)? create,
     TResult Function(ChangeText value)? changeText,
     TResult Function(AttachImage value)? attachImage,
+    TResult Function(RemoveImage value)? removeImage,
     TResult Function(Save value)? save,
     TResult Function(Delete value)? delete,
     required TResult orElse(),
@@ -509,6 +533,132 @@ class _$AttachImage implements AttachImage {
 
 abstract class AttachImage implements NoteEvent {
   const factory AttachImage() = _$AttachImage;
+}
+
+/// @nodoc
+abstract class _$$RemoveImageCopyWith<$Res> {
+  factory _$$RemoveImageCopyWith(
+          _$RemoveImage value, $Res Function(_$RemoveImage) then) =
+      __$$RemoveImageCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$RemoveImageCopyWithImpl<$Res>
+    extends _$NoteEventCopyWithImpl<$Res, _$RemoveImage>
+    implements _$$RemoveImageCopyWith<$Res> {
+  __$$RemoveImageCopyWithImpl(
+      _$RemoveImage _value, $Res Function(_$RemoveImage) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$RemoveImage implements RemoveImage {
+  const _$RemoveImage();
+
+  @override
+  String toString() {
+    return 'NoteEvent.removeImage()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$RemoveImage);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Note? note) create,
+    required TResult Function(String value) changeText,
+    required TResult Function() attachImage,
+    required TResult Function() removeImage,
+    required TResult Function(bool createNew) save,
+    required TResult Function(int? id) delete,
+  }) {
+    return removeImage();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Note? note)? create,
+    TResult? Function(String value)? changeText,
+    TResult? Function()? attachImage,
+    TResult? Function()? removeImage,
+    TResult? Function(bool createNew)? save,
+    TResult? Function(int? id)? delete,
+  }) {
+    return removeImage?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Note? note)? create,
+    TResult Function(String value)? changeText,
+    TResult Function()? attachImage,
+    TResult Function()? removeImage,
+    TResult Function(bool createNew)? save,
+    TResult Function(int? id)? delete,
+    required TResult orElse(),
+  }) {
+    if (removeImage != null) {
+      return removeImage();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Create value) create,
+    required TResult Function(ChangeText value) changeText,
+    required TResult Function(AttachImage value) attachImage,
+    required TResult Function(RemoveImage value) removeImage,
+    required TResult Function(Save value) save,
+    required TResult Function(Delete value) delete,
+  }) {
+    return removeImage(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Create value)? create,
+    TResult? Function(ChangeText value)? changeText,
+    TResult? Function(AttachImage value)? attachImage,
+    TResult? Function(RemoveImage value)? removeImage,
+    TResult? Function(Save value)? save,
+    TResult? Function(Delete value)? delete,
+  }) {
+    return removeImage?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Create value)? create,
+    TResult Function(ChangeText value)? changeText,
+    TResult Function(AttachImage value)? attachImage,
+    TResult Function(RemoveImage value)? removeImage,
+    TResult Function(Save value)? save,
+    TResult Function(Delete value)? delete,
+    required TResult orElse(),
+  }) {
+    if (removeImage != null) {
+      return removeImage(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class RemoveImage implements NoteEvent {
+  const factory RemoveImage() = _$RemoveImage;
 }
 
 /// @nodoc
@@ -576,6 +726,7 @@ class _$Save implements Save {
     required TResult Function(Note? note) create,
     required TResult Function(String value) changeText,
     required TResult Function() attachImage,
+    required TResult Function() removeImage,
     required TResult Function(bool createNew) save,
     required TResult Function(int? id) delete,
   }) {
@@ -588,6 +739,7 @@ class _$Save implements Save {
     TResult? Function(Note? note)? create,
     TResult? Function(String value)? changeText,
     TResult? Function()? attachImage,
+    TResult? Function()? removeImage,
     TResult? Function(bool createNew)? save,
     TResult? Function(int? id)? delete,
   }) {
@@ -600,6 +752,7 @@ class _$Save implements Save {
     TResult Function(Note? note)? create,
     TResult Function(String value)? changeText,
     TResult Function()? attachImage,
+    TResult Function()? removeImage,
     TResult Function(bool createNew)? save,
     TResult Function(int? id)? delete,
     required TResult orElse(),
@@ -616,6 +769,7 @@ class _$Save implements Save {
     required TResult Function(Create value) create,
     required TResult Function(ChangeText value) changeText,
     required TResult Function(AttachImage value) attachImage,
+    required TResult Function(RemoveImage value) removeImage,
     required TResult Function(Save value) save,
     required TResult Function(Delete value) delete,
   }) {
@@ -628,6 +782,7 @@ class _$Save implements Save {
     TResult? Function(Create value)? create,
     TResult? Function(ChangeText value)? changeText,
     TResult? Function(AttachImage value)? attachImage,
+    TResult? Function(RemoveImage value)? removeImage,
     TResult? Function(Save value)? save,
     TResult? Function(Delete value)? delete,
   }) {
@@ -640,6 +795,7 @@ class _$Save implements Save {
     TResult Function(Create value)? create,
     TResult Function(ChangeText value)? changeText,
     TResult Function(AttachImage value)? attachImage,
+    TResult Function(RemoveImage value)? removeImage,
     TResult Function(Save value)? save,
     TResult Function(Delete value)? delete,
     required TResult orElse(),
@@ -724,6 +880,7 @@ class _$Delete implements Delete {
     required TResult Function(Note? note) create,
     required TResult Function(String value) changeText,
     required TResult Function() attachImage,
+    required TResult Function() removeImage,
     required TResult Function(bool createNew) save,
     required TResult Function(int? id) delete,
   }) {
@@ -736,6 +893,7 @@ class _$Delete implements Delete {
     TResult? Function(Note? note)? create,
     TResult? Function(String value)? changeText,
     TResult? Function()? attachImage,
+    TResult? Function()? removeImage,
     TResult? Function(bool createNew)? save,
     TResult? Function(int? id)? delete,
   }) {
@@ -748,6 +906,7 @@ class _$Delete implements Delete {
     TResult Function(Note? note)? create,
     TResult Function(String value)? changeText,
     TResult Function()? attachImage,
+    TResult Function()? removeImage,
     TResult Function(bool createNew)? save,
     TResult Function(int? id)? delete,
     required TResult orElse(),
@@ -764,6 +923,7 @@ class _$Delete implements Delete {
     required TResult Function(Create value) create,
     required TResult Function(ChangeText value) changeText,
     required TResult Function(AttachImage value) attachImage,
+    required TResult Function(RemoveImage value) removeImage,
     required TResult Function(Save value) save,
     required TResult Function(Delete value) delete,
   }) {
@@ -776,6 +936,7 @@ class _$Delete implements Delete {
     TResult? Function(Create value)? create,
     TResult? Function(ChangeText value)? changeText,
     TResult? Function(AttachImage value)? attachImage,
+    TResult? Function(RemoveImage value)? removeImage,
     TResult? Function(Save value)? save,
     TResult? Function(Delete value)? delete,
   }) {
@@ -788,6 +949,7 @@ class _$Delete implements Delete {
     TResult Function(Create value)? create,
     TResult Function(ChangeText value)? changeText,
     TResult Function(AttachImage value)? attachImage,
+    TResult Function(RemoveImage value)? removeImage,
     TResult Function(Save value)? save,
     TResult Function(Delete value)? delete,
     required TResult orElse(),

@@ -20,6 +20,7 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
     on<Create>(onCreate);
     on<ChangeText>(onChangeText);
     on<AttachImage>(onAttachImage);
+    on<RemoveImage>(onRemoveImage);
     on<Save>(onSave);
     on<Delete>(onDelete);
 
@@ -70,6 +71,14 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
       ));
     }
   }
+
+  void onRemoveImage(
+    RemoveImage event,
+    Emitter<NoteState> emit,
+  ) =>
+      emit(state.copyWith(
+        note: state.note?.copyWith(image: null),
+      ));
 
   Future<void> onSave(
     Save event,

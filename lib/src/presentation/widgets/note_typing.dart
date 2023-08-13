@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:notes_app/src/domain/models/note.dart';
 import 'package:notes_app/src/presentation/blocs/note_bloc/note_bloc.dart';
 import 'package:notes_app/src/presentation/widgets/note_item_style.dart';
+import 'package:notes_app/src/services/image_viewer.dart';
 import 'package:notes_app/src/shared/app_colors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -55,12 +56,29 @@ class _NoteTypingState extends State<NoteTyping> {
                   horizontal: 4.w,
                 ),
                 suffixIcon: InkWell(
-                  onTap: () => context.read<NoteBloc>().add(
-                        const AttachImage(),
-                      ),
+                  onLongPress: () {
+                    context.read<NoteBloc>().add(
+                          const RemoveImage(),
+                        );
+                    setState(() {});
+                  },
+                  onTap: () {
+                    if (widget.note?.image != null) {
+                      ImageViewer.showImageNetwork(
+                        context,
+                        widget.note!.image!,
+                      );
+                    } else {
+                      context.read<NoteBloc>().add(
+                            const AttachImage(),
+                          );
+                    }
+                  },
                   child: Icon(
                     FontAwesomeIcons.image,
-                    color: AppColors.black,
+                    color: widget.note?.image != null
+                        ? AppColors.primary
+                        : AppColors.black,
                   ),
                 ),
                 border: InputBorder.none,

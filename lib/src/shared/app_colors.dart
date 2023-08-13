@@ -10,4 +10,6 @@ class AppColors {
   static Color get danger => const Color.fromARGB(255, 204, 0, 0);
   static Color get black => const Color.fromARGB(255, 0, 0, 0);
   static Color get transparent => Colors.transparent;
+  static Color get modalBackground =>
+      const Color.fromARGB(255, 0, 0, 0).withOpacity(0.6);
 }
