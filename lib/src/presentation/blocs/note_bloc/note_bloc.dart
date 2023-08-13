@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:image_picker/image_picker.dart';
@@ -31,7 +30,6 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
     Create event,
     Emitter<NoteState> emit,
   ) {
-    log(event.note?.id.toString() ?? 'NULL');
     emit(state.copyWith(
       success: false,
       failed: false,
@@ -77,7 +75,13 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
     Emitter<NoteState> emit,
   ) =>
       emit(state.copyWith(
-        note: state.note?.copyWith(image: null),
+        note: state.note != null
+            ? Note(
+                id: state.note?.id,
+                text: state.note?.text ?? '',
+                createdAt: DateTime.now(),
+              )
+            : state.note,
       ));
 
   Future<void> onSave(
@@ -89,7 +93,9 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
 
     emit(state.copyWith(loading: true, success: false, failed: false));
 
-    final result = await _database.create(state.note!);
+    final result = await _database.create(
+      state.note!.copyWith(createdAt: DateTime.now()),
+    );
 
     emit(state.copyWith(loading: false));
 
@@ -115,7 +121,7 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
       failed: false,
     ));
 
-    bool isDeleted = await _database.delete(state.note?.id ?? event.id!);
+    bool isDeleted = await _database.delete(state.note?.id ?? event.id);
 
     emit(state.copyWith(loading: false));
 

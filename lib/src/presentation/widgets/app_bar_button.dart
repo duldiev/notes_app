@@ -24,7 +24,7 @@ class AppBarButton extends StatelessWidget {
         margin: EdgeInsets.only(right: 2.w),
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: AppColors.background.withOpacity(0.8),
+          color: AppColors.light,
         ),
         padding: EdgeInsets.zero,
         child: IconButton(

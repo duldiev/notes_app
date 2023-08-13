@@ -29,7 +29,7 @@ class Note extends Equatable {
     return Note(
       id: id ?? this.id,
       text: text ?? this.text,
-      image: image,
+      image: image ?? this.image,
       createdAt: createdAt ?? this.createdAt,
     );
   }

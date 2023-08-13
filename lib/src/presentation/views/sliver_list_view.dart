@@ -70,7 +70,7 @@ class SliverListView extends StatelessWidget {
                 expandedHeight: expandedHeight ?? 20.h,
                 scrolledUnderElevation: scrolledUnderElevation ?? 0.8,
                 title: title,
-                backgroundColor: AppColors.background,
+                backgroundColor: AppColors.light,
                 titleTextStyle: TextStyleHelper.h4.copyWith(
                   color: AppColors.background,
                   fontSize: 14,
@@ -88,7 +88,7 @@ class SliverListView extends StatelessWidget {
                               child: Container(
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: AppColors.background.withOpacity(0.8),
+                                  color: AppColors.light,
                                 ),
                                 child: Icon(
                                   FontAwesomeIcons.arrowLeft,

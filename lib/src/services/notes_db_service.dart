@@ -61,7 +61,7 @@ class NotesDBService {
     }
   }
 
-  Future<bool> delete(int id) async {
+  Future<bool> delete(int? id) async {
     await initializeDB();
     try {
       await db.delete(

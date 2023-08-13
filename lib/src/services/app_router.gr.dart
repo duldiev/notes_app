@@ -68,7 +68,7 @@ class NoteEditorRoute extends _i4.PageRouteInfo<NoteEditorRouteArgs> {
   NoteEditorRoute({
     _i5.Key? key,
     required _i6.Note note,
-    required dynamic Function(int) callback,
+    required dynamic Function(int?) callback,
     List<_i4.PageRouteInfo>? children,
   }) : super(
           NoteEditorRoute.name,
@@ -97,7 +97,7 @@ class NoteEditorRouteArgs {
 
   final _i6.Note note;
 
-  final dynamic Function(int) callback;
+  final dynamic Function(int?) callback;
 
   @override
   String toString() {

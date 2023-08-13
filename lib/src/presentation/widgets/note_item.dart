@@ -8,6 +8,7 @@ import 'package:notes_app/src/domain/models/note.dart';
 import 'package:notes_app/src/presentation/blocs/note_bloc/note_bloc.dart';
 import 'package:notes_app/src/presentation/widgets/note_item_style.dart';
 import 'package:notes_app/src/services/app_router.gr.dart';
+import 'package:notes_app/src/services/dialogs.dart';
 import 'package:notes_app/src/shared/app_colors.dart';
 
 class NoteItem extends StatelessWidget {
@@ -24,7 +25,9 @@ class NoteItem extends StatelessWidget {
       onPressed: () => context.router.push(
         NoteEditorRoute(
           note: note,
-          callback: (id) => context.read<NoteBloc>().add(Delete(id)),
+          callback: (id) => context.read<NoteBloc>()
+            ..add(Delete(id))
+            ..add(const Create()),
         ),
       ),
       style: ButtonStyle(
@@ -45,19 +48,18 @@ class NoteItem extends StatelessWidget {
         endActionPane: ActionPane(
           motion: const ScrollMotion(),
           extentRatio: 0.3,
-          dismissible: DismissiblePane(
-            onDismissed: () => context.read<NoteBloc>().add(
-                  Delete(note.id),
-                ),
-          ),
           children: [
             SlidableAction(
               icon: FontAwesomeIcons.deleteLeft,
               foregroundColor: Colors.white,
               backgroundColor: Colors.red,
-              onPressed: (context) => context.read<NoteBloc>().add(
-                    Delete(note.id),
-                  ),
+              onPressed: (_) => Dialogs.showDeleteAlert(
+                context,
+                () => context.read<NoteBloc>().add(
+                      Delete(note.id),
+                    ),
+                () {},
+              ),
             ),
           ],
         ),
