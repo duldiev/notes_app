@@ -1,3 +1,3 @@
-# notes_app
+# Easy Notes App
 
-A new Flutter project.
+Save your wildest thoughts in here.
